@@ -35,6 +35,16 @@ const App = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
+ 
+  if (employees.length === 0) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "80px" }}>
+        <h1>Employee Data</h1>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <div style={{ textAlign: "center", marginTop: "80px" }}>
       <h1>Employee Data</h1>
@@ -70,15 +80,39 @@ const App = () => {
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
-          style={{ margin: "10px", padding: "8px 16px" }}
+          style={{
+            margin: "10px",
+            padding: "8px 16px",
+            backgroundColor: "#599d16ff",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: currentPage === 1 ? "not-allowed" : "pointer",
+          }}
         >
           Previous
         </button>
-        <span>Page {currentPage} of {totalPages}</span>
+
+ 
+        <span
+          data-testid="page-indicator"
+          style={{ fontWeight: "bold", margin: "0 15px" }}
+        >
+          Page {currentPage} of {totalPages}
+        </span>
+
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          style={{ margin: "10px", padding: "8px 16px" }}
+          style={{
+            margin: "10px",
+            padding: "8px 16px",
+            backgroundColor: "#599d16ff",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+          }}
         >
           Next
         </button>
